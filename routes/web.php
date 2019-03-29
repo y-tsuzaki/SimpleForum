@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'ForumController@welcome')->name('welcome');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'ForumController@threadList')->name('home');
+    Route::get('/thread/{id}', 'ForumController@threadDetail')->name('thread');    
+    Route::post('/post/add', 'PostController@add')->name('addPost');
+    Route::post('/post/delete', 'PostController@delete')->name('deletePost');
+});
