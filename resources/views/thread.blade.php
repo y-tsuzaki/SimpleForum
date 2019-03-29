@@ -23,7 +23,7 @@
                                 <div class="post__deleted-message">このメッセージは削除されました。<div>
                             @else
                                 <div class="post__subject"> 件名：{{ $post->subject }} </div>
-                                <div class="post__user">ユーザ：{{ $post->user->name }}</div>
+                                <div class="post__user">ユーザ：{{ $post->user->name }}(ID: {{ $post->user->id }} )</div>
                                 <div class="post__posted-datetime"> 投稿日時：{{ $post->created_at }}</div>
                                 <div class="post__body"> 本文：{!! nl2br(e($post->body)) !!} </div>
                                 @if ($post->user->id == $current_user_id)
